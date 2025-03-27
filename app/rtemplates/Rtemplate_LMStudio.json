@@ -1,0 +1,21 @@
+{
+    "url": "{{url}}",
+    "payload": {
+        "model": "{{model_name}}",
+        "messages": [
+            {
+                "role": "system",
+                "content": "Answer"
+            },
+            {
+                "role": "user",
+                "content": "{{prompt}}"
+            }
+        ],
+        "temperature": 0.7,
+        "stream": false
+    },
+    "headers": {
+        "Content-Type": "application/json"
+    }
+}

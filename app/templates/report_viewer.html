@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}KeFHIR - Report{% endblock %}
+
+{% block content %}
+
+
+    <h1>Report for {{ role }} / {{ endpoint_url }}</h1>
+        <div class="markdown-content">
+            {{ contenido|safe }}
+        </div>
+
+
+
+{% endblock %}

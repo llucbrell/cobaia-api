@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}KeFHIR - Logs{% endblock %}
+
+{% block content %}
+
+
+    <h1>Logs for {{ role }} / {{ endpoint_url }}</h1>
+    <form>
+        <textarea rows="20" cols="100">{{ log_content }}</textarea>
+    </form>
+
+
+
+{% endblock %}

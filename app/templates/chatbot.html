@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+
+{% block title %}KeFHIR - Chat{% endblock %}
+
+{% block content %}
+
+
+    <!-- Incluir el script del componente Deep Chat desde un CDN compatible -->
+    <script type="module" src="/static/libs/deep-chat.min.js"></script>
+    <link rel="stylesheet" href="/static/assets/jsoneditor/icons/jsoneditor-icons.svg" />
+    <script type="module" src="/static/libs/jsoneditor.js"></script>
+    <link rel="stylesheet" href="/static/libs/jsoneditor.css" /> <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+<style>
+    .link-external-button{
+        margin-bottom: 0px;
+        padding: 3px;
+    }
+    .deep-external-button{
+         background-color: transparent;
+         border: none;
+         cursor: pointer;
+         font-size: 15px;
+         padding: 5px;
+         transition: background-color 0.3s;
+         color: #0d6efd;
+    }
+    .deep-external-button:hover{
+        color: blue;
+    }
+    </style>
+    <div class="lf-info">
+        <h4>Configuration</h4>
+        <div class="form-group">
+            <label for="urlPath">Endpoint path</label>
+            <input type="text" id="urlPath" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label for="modelName">Model Name</label>
+            <input type="text" id="modelName" class="form-control" value="{{ endpoint.model_name }}" >
+            <button class="btn btn-primary mt-2" onclick="saveModelName()">Update Db</button>
+        </div>
+
+        <!-- Checkbox para model patch memory -->
+        <div class="form-group">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="modelPatchMemoryCheckbox" checked>
+            <label class="form-check-label" for="modelPatchMemoryCheckbox">Dynamic Prompt Model Memory</label>
+        </div>
+            <input type="number" placeholder="Value of Model Context Window in tonkens ex. 4096" id="modelContextWindow" class="form-control" value="{{ endpoint.model_context_window }}" >
+            <button class="btn btn-primary mt-2" onclick="saveContextWindow()">Update Db</button>
+        </div>
+
+            <!-- Checkbox para validation -->
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="validationCheckbox" checked>
+            <label class="form-check-label" for="validationCheckbox">Validation</label>
+        </div>
+        <div class="form-group">
+            <label for="schema">Schema</label>
+            <!-- Contenedor para el JSONEditor -->
+            <div id="jsoneditor" style="width: 100%; height: 400px;"></div>
+            <button class="btn btn-primary mt-2" onclick="saveSchema()">Update Db</button>
+            <button class="btn btn-primary mt-2" onclick="generateSchemaUsingGenson()">Schema from example</button>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="reportCheckbox" checked>
+            <label class="form-check-label" for="reportCheckbox">Report</label>
+        </div>
+
+        <div class="form-group">
+    <label for="additionalPrompt">Extra data and Samples:</label>
+    <textarea id="additionalPrompt" class="form-control" placeholder="Write here extra prompt to send to model">{{ endpoint.additional_prompt }}</textarea>
+    <button class="btn btn-primary mt-2" onclick="saveAdditionalPrompt()">Update Db</button>
+</div>
+
+
+    </div>
+
+<div class="lf-chat">
+    <div class="lf-chat-tools" style="float: right; color:blue">
+    <span>
+    <button id="reloadButton" class="deep-external-button" title="Send last message to model">
+    <i class="fa-solid fa-rotate-right"></i>
+    </button>
+    <button class="deep-external-button" id="renderButton" title="See generated report">
+        <i class="fa-brands fa-markdown"></i>
+    </button>
+        <!-- botón que redirige a los logs, retirado al encontrar mejor manera
+    <a id="loglink" class="link-external-button" href="empty" target="_blank" style="float: right;" title="Go to Backend Logs">
+        <i class="fa-solid fa-bug"></i>
+    </a>
+         -->
+    </span>
+</div>
+        <!-- Contenedor que contiene deep-chat 
+  mixedFiles='{"files": {"maxNumberOfFiles": 2, "acceptedFormats": ".jpg,.png"}}'
+         -->
+        <div class="chat-container mb-4">
+            <deep-chat
+                connect='{
+                    "url": "/api/{{ role }}/{{ endpoint_url }}",
+                    "method": "POST",
+                    "headers": {"Content-Type": "application/json", "Authorization": "{{token}}"}
+                }'
+                chatStyle='{"border": "None", "width": "1024px", "height": "600px", "margin-right": "30px", "margin-top": "None"}'>
+
+    <div>
+      <div style="text-align: center; margin-bottom: 8px; font-size: 16px">
+        <b>Welcome to KeFHIR Chat</b>
+      </div>
+      <div style="font-size: 15px; line-height: 20px">
+        Insert unstructured text data and recieve FHIR object from provided Schema.
+      </div>
+    </div>
+</deep-chat>
+  </div>
+  </div>
+
+      <script>
+// Definir global
+var markdownReport = ""; 
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const url = window.location.pathname;
+            const parts = url.split('/').filter(part => part);
+            const lastTwoParts = parts.slice(-2).join('/');
+            document.getElementById('urlPath').value = lastTwoParts;
+            //document.getElementById('loglink').href = '/logs/chat/' + lastTwoParts;
+        });
+
+        function saveModelName() {
+            const modelName = document.getElementById('modelName').value;
+            const endpointId = "{{ endpoint.id }}";  // Pasamos el ID del endpoint desde Flask
+
+            fetch(`/dashboard/update_model_name/${endpointId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ model_name: modelName })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        }
+
+        function saveAdditionalPrompt() {
+            const additionalPrompt = document.getElementById('additionalPrompt').value;
+            const endpointId = "{{ endpoint.id }}";  // Utiliza el ID del endpoint desde Flask
+
+            fetch(`/dashboard/update_additional_prompt/${endpointId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ additional_prompt: additionalPrompt })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        }
+
+
+        function saveContextWindow() {
+            const modelContext = document.getElementById('modelContextWindow').value;
+            const endpointId = "{{ endpoint.id }}";  // Pasamos el ID del endpoint desde Flask
+
+            fetch(`/dashboard/update_model_context_window/${endpointId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ model_context_window: modelContext })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        }
+
+
+
+        
+        document.addEventListener('DOMContentLoaded', function () {
+        const chatElement = document.querySelector('deep-chat');
+
+            // Implementación de requestInterceptor
+            chatElement.requestInterceptor = (requestDetails) => {
+                let myButton1 = document.getElementById("reloadButton");
+                let myButton2 = document.getElementById("renderButton");
+                myButton1.disabled = "true";
+                myButton2.disabled = "true";
+                console.log("Request Intercepted:", requestDetails);
+                validation = document.getElementById("validationCheckbox").checked;
+                report = document.getElementById("reportCheckbox").checked;
+                memory = document.getElementById("modelPatchMemoryCheckbox").checked;
+                console.log(validation);
+                console.log(report);
+                console.log(memory);
+                // Modificar el cuerpo de la solicitud antes de enviarla
+                //requestDetails.body = { prompt: requestDetails.body.messages[0].text };
+                requestDetails.body.validation = validation;
+                requestDetails.body.reportMarkdown = report;
+                requestDetails.body.dynamicPromptModelMemory = memory;
+                return requestDetails;
+            };
+
+            // Implementación de responseInterceptor
+            chatElement.responseInterceptor = (response) => {
+                let myButton1 = document.getElementById("reloadButton");
+                let myButton2 = document.getElementById("renderButton");
+                myButton1.disabled = false;
+                myButton2.disabled = false;
+                console.log("Response Intercepted:", response);
+                console.log("Markdonw" + markdownReport);
+                response.kf_text? response.text = response.kf_text : response.error = "Error trying to get data from kf_server";
+                response.kf_error? response.error = response.kf_error: "";
+                // Aquí puedes modificar la respuesta si es necesario
+                // Verifica si la respuesta es un Blob (como en el caso de un error 500 con HTML)
+                if (response instanceof Blob) {
+                    response.text().then((text) => {
+                        console.log("Response Text:", text);
+                        //alert("Error 500: " + text);  // Muestra un alert con el contenido del error
+                        chatElement.addMessage({
+                            html: `${text}`,
+                            role: 'ai',
+                        });
+                    let myButton1 = document.getElementById("reloadButton");
+                    let myButton2 = document.getElementById("renderButton");
+                    myButton1.disabled = false;
+                    myButton2.disabled = false;
+                    }).catch((error) => {
+                        console.error("Error al leer el Blob:", error);
+                        alert("Ocurrió un error en el servidor, pero no se pudo leer el contenido.");
+                    let myButton1 = document.getElementById("reloadButton");
+                    let myButton2 = document.getElementById("renderButton");
+                    myButton1.disabled = false;
+                    myButton2.disabled = false;
+                    });
+                } else {
+                    // Aquí puedes manejar otros tipos de respuestas si es necesario
+                    if (response.error) {
+                       // alert("Se produjo un error: " + response.error);
+                        chatElement.addMessage({
+                            text: `${response.error}`,
+                            role: 'ai',
+                        });
+ 
+                    }else{
+                        if(!response.html){
+                            //console.log("Not HTML")
+                            //response.html=`
+                           // <button class="reload-button">Reload</button> in chat button -dprktd to have clean history for data conversions
+                           // `
+                        }
+                        if(response.kf_report){
+                            markdownReport = response.kf_report.md;
+                        }
+                    }
+                } 
+                 
+                return response;
+            };
+
+
+        // Esperar a que la página cargue completamente
+            document.getElementById("renderButton").onclick = function() {
+                openMarkdownInNewTab();
+            };
+
+
+        // Función que abre una nueva pestaña y renderiza el Markdown
+        function openMarkdownInNewTab() {
+        // Markdown de ejemplo almacenado en una variable
+        console.log(markdownReport);
+        const markdownContent = '' + markdownReport;
+            // Crear una instancia de Showdown Converter
+            var converter = new showdown.Converter({ tables: true });
+            // Convertir el Markdown a HTML
+            var renderedHtml = converter.makeHtml(markdownContent);
+
+            // Abre una nueva pestaña
+            var newTab = window.open();
+
+            // Inserta el HTML convertido en la nueva pestaña
+            newTab.document.write(`
+                <html>
+                <head>
+                    <link rel="stylesheet" href="/static/css/markdownreport.css">
+                    <title>Markdown Renderizado</title>
+                </head>
+                <body>
+                    ${renderedHtml? "<div>" + renderedHtml + "</div>" : "<div><h3>Not any report generated</h3> <p>Please activate report generation and resend data to the model.</p></div>"}
+                </body>
+                </html>
+            `);
+            newTab.document.close(); // Necesario para asegurar que la página se renderice
+        }
+
+
+
+// Obtén el botón por su ID
+const externalReloadButton = document.getElementById('reloadButton');
+
+
+// Asigna el evento de click para la funcionalidad de reload
+externalReloadButton.addEventListener('click', () => {
+  // Accede al historial utilizando el método getMessages()
+  const messages = chatElement.getMessages();
+  
+  // Encuentra el último mensaje del usuario
+  const lastUserMessage = messages.reverse().find(msg => msg.role === 'user');
+  
+  if (lastUserMessage) {
+    // Reenvía el último mensaje del usuario
+    chatElement.submitUserMessage({ text: lastUserMessage.text });
+  } else {
+    console.log('No user message found to resend.');
+  }
+});
+
+        });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById("jsoneditor");
+    const options = {
+        modes: ['tree', 'code'],  // Permitir cambiar entre vista de árbol y texto plano
+        mode: 'tree'  // Vista inicial en formato árbol
+    };
+    const editor = new JSONEditor(container, options);
+
+    // Cargar el esquema inicial en el editor desde la variable de plantilla
+    let initialSchema = {{ endpoint.schema|tojson }};
+
+    // Si el esquema está en formato de cadena, elimínale las comillas iniciales y finales
+    if (typeof initialSchema === 'string' && initialSchema.startsWith('"') && initialSchema.endsWith('"')) {
+        initialSchema = initialSchema.slice(1, -1);  // Elimina la primera y última comilla
+    }
+
+    try {
+        // Intentar convertir el string JSON a un objeto
+        initialSchema = JSON.parse(initialSchema);
+    } catch (error) {
+        console.error("Error al parsear el esquema JSON:", error);
+    }
+
+    editor.set(initialSchema);
+
+    // Guardar el esquema actualizado en la base de datos al hacer clic en el botón "Update"
+    function saveSchema() {
+        const updatedSchema = editor.get();  // Obtener el JSON del editor
+        const endpointId = "{{ endpoint.id }}";  // Pasar el ID del endpoint desde Flask
+
+        fetch(`/dashboard/update_schema/${endpointId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ schema: JSON.stringify(updatedSchema) })  // Convertir el objeto JSON a una cadena antes de enviarlo
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => alert(data.message))
+        .catch(error => alert('Error:\n'+ error));
+    }
+
+    // Hacer que la función saveSchema esté disponible globalmente
+    window.saveSchema = saveSchema;
+
+
+    function generateSchemaUsingGenson() {
+    const currentData = editor.get();  // Obtener el JSON actual del editor
+    fetch('/dashboard/generate_schema_with_genson', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(currentData)
+    })
+    .then(response => response.json())
+    .then(generatedSchema => {
+        editor.set(generatedSchema);  // Establecer el esquema generado en el editor
+    })
+    .catch(error => console.error('Error al generar el esquema:', error));
+}
+
+
+    window.generateSchemaUsingGenson = generateSchemaUsingGenson;
+
+});
+
+
+
+
+
+    </script>
+
+{% endblock %}

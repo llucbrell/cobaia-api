@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Create New Endpoint{% endblock %}
+
+{% block content %}
+<h1>Create New Endpoint</h1>
+<form method="POST" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="model_name" class="form-label">Model Name</label>
+        <input type="text" class="form-control" id="model_name" name="model_name" required>
+        <div class="invalid-feedback">Please provide a model name.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="schema" class="form-label">Schema</label>
+        <textarea class="form-control" id="schema" name="schema" rows="3" required></textarea>
+        <div class="invalid-feedback">Please provide a schema.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="target_url" class="form-label">Target URL</label>
+        <input type="url" class="form-control" id="target_url" name="target_url" required>
+        <div class="invalid-feedback">Please provide a valid URL.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="endpoint_url" class="form-label">Endpoint URL</label>
+        <input type="url" class="form-control" id="endpoint_url" name="endpoint_url" required>
+        <div class="invalid-feedback">Please provide a valid endpoint URL.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="role_id" class="form-label">Role</label>
+        <select class="form-select" id="role_id" name="role_id" required>
+            <option value="" disabled selected>Select a role</option>
+            {% for role in roles %}
+                <option value="{{ role.id }}">{{ role.name }}</option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">Please select a role.</div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+{% endblock %}

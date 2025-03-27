@@ -1,0 +1,44 @@
+@startuml
+
+package pkg as "Data types" {
+file csv as "csv"
+file txt as "txt"
+file pdf as "pdf"
+file xml as "xml"
+file html as "html"
+file json as "json"
+file ust as "unstructured"
+file etc as "etc.,"
+
+}
+Rectangle cob as "Cobaia API" {
+
+[Endpoint]
+[Engine]
+[Checker]
+[Parser]
+}
+
+
+Rectangle "LM Server \n Ollama\n LM Studio\n..."{
+[LLM]
+}
+[FHIR Server]
+
+database "Hopital's Databases" {
+folder f1 as "Data types" {
+
+}
+
+}
+f1 -d-> pkg
+pkg -r-> [Your App, Script, etc.,]
+[Your App, Script, etc.,] --> [Endpoint] : "Sends\n Unnstructured data \n and recieves\n FHIR with Checker\n Report from Cobaia API"
+[Endpoint] -d-> [Engine] 
+[Engine] --> [LLM]
+[LLM] -u-> [Parser]
+[Parser] -u-> [Checker]
+[Checker] -u-> [Endpoint]
+[Endpoint] --> [Your App, Script, etc.,]: ""
+[Your App, Script, etc.,] -r-> [FHIR Server] :POST
+@enduml

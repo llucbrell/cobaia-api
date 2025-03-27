@@ -1,0 +1,278 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "KeFHIR API",
+    "description": "API para la integración de modelos y manejo del sistema KeFHIR Chat, incluyendo procesamiento de documentos y de imágenes.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json"],
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Autenticación mediante token. Formato: 'Bearer {token}'"
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/chat/{role}/{endpoint_url}": {
+      "post": {
+        "tags": ["Chat"],
+        "summary": "Interactúa con el modelo mediante chat.",
+        "description": "Envía datos no estructurados al modelo y recibe respuestas en formato FHIR, interactúa usando el chat (útil para debug).",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Rol del usuario que realiza la solicitud."
+          },
+          {
+            "name": "endpoint_url",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "URL del endpoint del modelo con el que se interactúa."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prompt": {
+                  "type": "string",
+                  "description": "Texto no estructurado para ser procesado por el modelo."
+                },
+                "validation": {
+                  "type": "boolean",
+                  "description": "Indica si se debe validar el esquema del modelo."
+                },
+                "reportMarkdown": {
+                  "type": "boolean",
+                  "description": "Indica si se debe generar un reporte en formato Markdown."
+                },
+                "dynamicPromptModelMemory": {
+                  "type": "boolean",
+                  "description": "Indica si se debe usar memoria dinámica en el modelo para el contexto."
+                }
+              },
+              "required": ["prompt"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kf_text": {
+                  "type": "string",
+                  "description": "Texto generado por el modelo."
+                },
+                "kf_report": {
+                  "type": "object",
+                  "properties": {
+                    "md": {
+                      "type": "string",
+                      "description": "Reporte en formato Markdown."
+                    }
+                  }
+                },
+                "kf_error": {
+                  "type": "string",
+                  "description": "Mensaje de error en caso de fallos."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "500": {
+            "description": "Error del servidor"
+          }
+        }
+      }
+    },
+    "/api/{role}/{endpoint_url}": {
+      "post": {
+        "tags": ["API"],
+        "summary": "Interactúa con el modelo mediante api.",
+        "description": "Envía datos no estructurados al modelo y recibe respuestas en formato FHIR.",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Rol del usuario que realiza la solicitud."
+          },
+          {
+            "name": "endpoint_url",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "URL del endpoint del modelo con el que se interactúa."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prompt": {
+                  "type": "string",
+                  "description": "Texto no estructurado para ser procesado por el modelo."
+                },
+                "validation": {
+                  "type": "boolean",
+                  "description": "Indica si se debe validar el esquema del modelo."
+                },
+                "reportMarkdown": {
+                  "type": "boolean",
+                  "description": "Indica si se debe generar un reporte en formato Markdown."
+                },
+                "dynamicPromptModelMemory": {
+                  "type": "boolean",
+                  "description": "Indica si se debe usar memoria dinámica en el modelo para el contexto."
+                }
+              },
+              "required": ["prompt"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kf_text": {
+                  "type": "string",
+                  "description": "Texto generado por el modelo."
+                },
+                "kf_report": {
+                  "type": "object",
+                  "properties": {
+                    "md": {
+                      "type": "string",
+                      "description": "Reporte en formato Markdown."
+                    }
+                  }
+                },
+                "kf_error": {
+                  "type": "string",
+                  "description": "Mensaje de error en caso de fallos."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "500": {
+            "description": "Error del servidor"
+          }
+        }
+      }
+    },
+    "/documents/{role}/{endpoint_url}": {
+      "post": {
+        "tags": ["Documentos"],
+        "summary": "Sube y procesa documentos PDF o TXT.",
+        "description": "Este endpoint permite subir y procesar archivos de documentos (PDF o TXT) para ser procesados por el modelo.",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Rol del usuario que realiza la solicitud."
+          },
+          {
+            "name": "endpoint_url",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "URL del endpoint del modelo con el que se interactúa."
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "El archivo de documento en formato PDF o TXT."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Documento procesado con éxito."
+          },
+          "400": {
+            "description": "Tipo de archivo no soportado o error en la solicitud."
+          },
+          "403": {
+            "description": "Verificación de seguridad fallida."
+          }
+        }
+      }
+    },
+    "/images/{role}/{endpoint_url}": {
+      "post": {
+        "tags": ["Imágenes"],
+        "summary": "Sube y procesa imágenes JPG o PNG.",
+        "description": "Este endpoint permite subir y procesar imágenes (JPG o PNG) para ser procesadas por el modelo.",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Rol del usuario que realiza la solicitud."
+          },
+          {
+            "name": "endpoint_url",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "URL del endpoint del modelo con el que se interactúa."
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "El archivo de imagen en formato JPG o PNG."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Imagen procesada con éxito."
+          },
+          "400": {
+            "description": "Tipo de archivo no soportado o error en la solicitud."
+          },
+          "403": {
+            "description": "Verificación de seguridad fallida."
+          }
+        }
+      }
+    }
+  }
+}

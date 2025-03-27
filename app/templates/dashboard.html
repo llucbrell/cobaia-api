@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Cobaia API - Dashboard{% endblock %}
+
+{% block content %}
+<h1>Welcome, {{ name }}</h1>
+
+<a href="{{ url_for('dashboard.create_endpoint') }}" class="btn btn-primary mb-3" style="float: right;">
+    <i class="fa-regular fa-square-plus"></i>
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Endpoint</th>
+            <th>Model Name</th>
+            <th>Target URL</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for endpoint, role in endpoints %}
+        <tr>
+            <td>{{role.name}}/{{ endpoint.endpoint_url }}</td>
+            <td>{{ endpoint.model_name }}</td>
+            <td>{{ endpoint.target_url }}</td>
+            <td>
+                <!-- Botón con icono de comentario, comprobando que role no sea None -->
+                {% if role %}
+                <a href="{{ url_for('dynamic_chat.dynamic_chat_route', role=role.name, endpoint_url=endpoint.endpoint_url) }}" class="btn btn-sm btn-info">
+                    <i class="fa-regular fa-message"></i>
+                </a>
+                {% else %}
+                <span class="text-muted">No role assigned</span>
+                {% endif %}
+                <a href="{{ url_for('dashboard.edit_endpoint', id=endpoint.id) }}" class="btn btn-sm btn-warning">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </a>
+                <form action="{{ url_for('dashboard.delete_endpoint', id=endpoint.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this endpoint?');">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

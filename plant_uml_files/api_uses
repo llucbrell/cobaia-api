@@ -1,0 +1,51 @@
+@startuml
+skinparam actorStyle awesome
+:User: -d-> (Use)
+"Admin" as Admin
+"Configure the api" as (Use)
+Admin -d-> (Admin the api)
+Admin -l-> (Login)
+:User: -r-> (Login)
+(Login) --> [             Url\nhttp://miserver/login]
+
+
+package "User options" as op {
+usecase "Create Endpoint" as cendp
+usecase "Remove Endpoint" as rmendp
+usecase "Edit Endpoint" as eendp
+usecase "Associate Endpoint with user role" as endp2role
+[             Url\nhttp://miserver/dashboard]
+}
+
+package "Admin options" as aop {
+[             Url\nhttp://miserver/admin]
+
+package "Create" as crt {
+usecase "User" as acuser
+usecase "Endpoint" as acendp
+usecase "Token" as actok
+usecase "Role" as acrole
+
+}
+package "Edit" as edit {
+usecase "User" as aeuser
+usecase "Endpoint" as aeendp
+usecase "Token" as aetok
+usecase "Role" as aerole
+
+
+}
+package "Remove" as remove {
+usecase "User" as armuser
+usecase "Endpoint" as armendp
+usecase "Token" as armtoken
+usecase "Role" as armrole
+
+}
+}
+(Use) -d-> [             Url\nhttp://miserver/dashboard]
+(Admin the api) -d-> [             Url\nhttp://miserver/admin]
+[Any App] --> (Use Endpoint) : "Send assigned token"
+(Use Endpoint) --> [             Url\nhttp://miserver/api/userrole/endpointname]
+
+@enduml

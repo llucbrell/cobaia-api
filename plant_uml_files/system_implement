@@ -1,0 +1,27 @@
+@startuml
+file "doc/data" as dat
+[Project App A, B, etc.,]
+Rectangle "KeFHIR Server"{
+[Project Defined Url]-d->[Project defined Schema]
+[Project defined Schema] -d-> [Model Runner]
+[Model Runner] <--> [Checker]
+}
+Rectangle "Ollama Server"{
+[More LLMs...]
+[Other Project LLM]
+[LLM selected Model]
+}
+
+[FHIR Server]
+
+database "Databases" {
+}
+
+Databases -d-> [Project App A, B, etc.,]
+[Project App A, B, etc.,] -d-> [Project Defined Url]
+
+[Model Runner] <-l-> [LLM selected Model]: "raw data | FHIR object"
+[Checker] --> [Project App A, B, etc.,]
+
+[Project App A, B, etc.,] -->  [FHIR Server]
+@enduml

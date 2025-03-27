@@ -1,0 +1,31 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<div class="row align-items-center">
+    <div class="col-md-6">
+        <img src="{{ url_for('static', filename='images/cobaiafhir_2.png') }}" alt="Admin Image" class="img-fluid" style="width: 100%; max-width: 600px;"/>
+    </div>
+    <div class="col-md-6">
+        <div class="welcome-text">
+            <h1>Welcome to the Admin Panel</h1>
+            <p>Cobaia it's an API that uses AI to transform unstructured text data into FHIR structured data. Cobaia also provides some tools to check the data conversion, tools like chat style ui foro debug and AI model logs</p>
+            <h3>This is your custom admin homepage</h3>
+            <p>You can manage all CRUD operations within this panel, and also create users and mange the roles.</p>
+            <h3>Dynamic API endpoint construction</h3>
+            <p>You can create an api endpint and this it would be assigned to </p> <p><b> /api/[role-name]/[endpoint-url]</b></p>
+            <small>
+            <small>
+            <p>*To access to the endpoint you need to have a token linked with the role in wich is included the created endpoint.</p>
+            </small>
+            </small>
+            <p>All api endpoints has its own linked chat UI in</p> <p><b> /chat/[role-name]/[endpoint-url]</b></p>
+            <small>
+            <small>
+            <p>*Only the user wicht has the role can access to the chat UI</p>
+            </small>
+            </small>
+        </div>
+    </div>
+</div>
+{{ super() }}
+{% endblock %}
