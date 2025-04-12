@@ -1,0 +1,40 @@
+SOAP note example for medical practitioners
+Subjective
+66-year-old Darleene presents for a follow-up appointment regarding her hypertension. She reports feeling well and denies any dizziness, headaches, or fatigue.
+
+Medical history: Darleene has no significant past medical history beyond hypertension. Her current medication regimen consists solely of HCTZ 25mg daily.
+
+Lifestyle: Over the past three months, Darleene has successfully lost 53 pounds by implementing a low-fat diet and incorporating daily 10-minute walks. Notably, she also acknowledges consuming two glasses of wine nightly. Darleene denies using any over-the-counter medications like cold remedies or herbal supplements.
+
+Objective
+
+Vital signs:
+
+* BP: 153/80 mmHg
+* Pulse: 76 beats per minute
+* Weight: 155 lbs
+* Height: 55 inches
+* BMI: ~30
+* General appearance: Well-nourished, no acute distress.
+* HEENT: Normocephalic, atraumatic, atraumatic, atraumatic (head, eyes, ears, nose, throat - all normal).
+* Neck: Supple, no jugular venous distention (JVD).
+* Lungs: Clear to auscultation bilaterally.
+* Heart: Regular rate and rhythm, no murmurs.
+* Abdomen: Soft, non-tender, no organomegaly.
+* Extremities: No edema.
+* Assessment
+* Darleene is here to follow up on her hypertension. It is not well-controlled since blood pressure exceeds the goal of 135/85. A possible trigger to her poor control of HTN may be her alcohol use or the presence of obesity.
+
+Plan
+
+1. Lifestyle modifications
+
+* Continue a low-fat diet and exercise: Encourage Darleene to maintain her current healthy diet.
+* Increase physical activity: To further support weight loss and overall health, I recommend gradually increasing walking duration to 20-30 minutes daily.
+* Moderate alcohol intake: Discuss the potential negative impact of excessive alcohol consumption on blood pressure control. Darleene agrees to limit her wine intake to weekend evenings only as a trial to assess its effect on her BP.
+
+2. Monitoring and follow-up
+
+* Home blood pressure (BP) monitoring: Instruct Darleene to monitor her BP regularly at home and maintain a diary to document the readings.
+* Potassium level check: Schedule a blood test to assess her potassium level due to the potential electrolyte imbalance associated with diuretic use.
+* Follow-up appointment: Schedule a follow-up clinic visit in one month. At this visit, Darleene should bring her BP diary for review. Based on her progress, blood pressure readings, and overall evaluation, the addition of an ACE inhibitor medication might be considered if BP remains uncontrolled.

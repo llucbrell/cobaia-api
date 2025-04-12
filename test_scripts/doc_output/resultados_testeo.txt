@@ -1,0 +1,29 @@
+Resultados del Testeo de la API
+
+Archivo	Estado	Mensaje
+soap_ex_consej_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_consej_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_dentis_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_dentis_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_enf_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_enf_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_fisio_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_fisio_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_logo_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_logo_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_masaj_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_masaj_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_med_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_med_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_ped_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_ped_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_psicoter_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_psicoter_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_psiqui_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_psiqui_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_terpocup_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_terpocup_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_ter_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_ter_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_trab_1.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient
+soap_ex_trab_2.txt	Error	401 Client Error: UNAUTHORIZED for url: http://127.0.0.1:5000/api/surpass/patient

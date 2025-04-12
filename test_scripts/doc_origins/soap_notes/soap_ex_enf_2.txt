@@ -1,0 +1,30 @@
+SOAP note example for nurses or nurse practitioners
+
+Subjective
+John reports feeling tired and struggling to get out of bed in the morning. He also struggles to get to work and constantly finds his mind wandering to negative thoughts. John stated that his sleep had been broken, and he did not wake feeling rested. He reports that he does not feel as though the medication is making any difference and thinks he is getting worse.
+
+Objective
+John could not come into the practice and has been seen at home. John's personal hygiene does not appear to be intact; he was unshaven and dressed in track pants and a hooded jumper, which is unusual as he typically takes excellent care of his appearance. John appears to be tired. He has a pale complexion and large circles under his eyes.
+
+John's compliance with his new medication is good, and he appears to have retained his food intake. Weight is stable and unchanged.
+
+Assessment
+The client's symptoms are consistent with a major depressive episode. This is evidenced by his low mood, slowed speech rate and reduced volume, depressed body language, and facial expression. However, it's important to note that this assessment is based on the information presented, and a full diagnosis can only be confirmed by a qualified mental health professional.
+
+Further exploration is needed to understand the duration and severity of these symptoms, as well as any potential contributing factors such as life stressors, relevant medical history, or personal and family history. Additionally, while suicidal ideation is currently denied, it is crucial to monitor for any changes and ensure appropriate safety measures are in place.
+
+Plan
+Diagnosis: Major depressive disorder, recurrent, severe (F33.1 ICD-10) - Active
+
+Problem: Depressed mood
+
+Rationale: John's depressed mood, evidenced by ongoing symptoms consistent with Major Depressive Disorder, significantly impacts his daily life and requires continued intervention.
+
+Long-term goal: John will develop skills to recognize and manage his depression effectively.
+
+Short-term goals and interventions:
+
+1. Maintain treatment engagement: Continue attending weekly individual therapy sessions to address negative thinking patterns, build coping mechanisms, and monitor progress.
+2. Optimize medication: Collaborate with the prescribing physician to continue titration of the SSRI fluoxetine as needed, ensuring optimal symptom control.
+3. Engage in daily physical activity: Encourage participation in structured physical activity, such as walking Jingo once a day, to improve mood and energy levels.
+4. Implement a safety plan: Develop a collaborative safety plan with John outlining clear steps and resources he can access in moments of suicidal ideation, ensuring his safety and well-being.

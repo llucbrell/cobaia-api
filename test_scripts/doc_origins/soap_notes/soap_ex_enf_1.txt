@@ -1,0 +1,29 @@
+Ejemplo de nota SOAP para enfermeras o Enfermeros practicantes
+Subjetivo
+John informa que se siente «cansado» y que «parece que no puede levantarse de la cama por la mañana». John está «luchando por ir a trabajar» y dice que «constantemente encuentra que su mente se desvía hacia pensamientos negativos». John declaró que su sueño se había interrumpido y que no se despierta sintiéndose descansado. Dice que no siente que el medicamento esté haciendo ninguna diferencia y cree que está empeorando.
+
+Objetivo
+John no pudo ingresar al consultorio, por lo que lo atendieron en su casa. La higiene personal de John no parece estar intacta; estaba sin afeitar y vestía pantalones deportivos y un jersey con capucha, lo cual es inusual, ya que suele cuidar muy bien su apariencia. John parece estar cansado; es de tez pálida y tiene grandes círculos debajo de los ojos.
+
+El cumplimiento de John con su nuevo medicamento es bueno y parece que ha mantenido su ingesta de alimentos. El peso es estable y no ha cambiado.
+
+Evaluación
+John presenta síntomas consistentes con un episodio depresivo mayor. Esto se evidencia en su bajo estado de ánimo, su ritmo de habla lento y su volumen reducido, su lenguaje corporal deprimido y su expresión facial. Sin embargo, es importante tener en cuenta que esta evaluación se basa en la información presentada y que un diagnóstico completo solo puede confirmarlo un profesional de salud mental calificado.
+
+Se necesita más exploración para comprender la duración y la gravedad de estos síntomas, así como cualquier posible factor contribuyente, como los factores estresantes de la vida, las afecciones médicas o los antecedentes personales. Además, si bien actualmente se niega la ideación suicida, es crucial supervisar cualquier cambio y garantizar que se implementen las medidas de seguridad adecuadas.
+
+Planear
+Diagnóstico: trastorno depresivo mayor, recurrente, grave (F33.1 ICD-10) - Activo
+
+Problema: Estado de ánimo deprimido
+
+Justificación: El estado de ánimo deprimido de John, que se evidencia en síntomas continuos consistentes con el trastorno depresivo mayor, afecta significativamente su vida diaria y requiere una intervención continua.
+
+Meta a largo plazo: John desarrollará habilidades para reconocer y controlar su depresión de manera efectiva.
+
+Metas e intervenciones a corto plazo:
+
+1. Mantenga el compromiso con el tratamiento: continúe asistiendo a las sesiones semanales de terapia individual para abordar los patrones de pensamiento negativos, desarrollar mecanismos de afrontamiento y monitorear el progreso.
+2. Optimice la medicación: colabore con el médico que lo recetó para continuar ajustando el ISRS de fluoxetina según sea necesario, garantizando un control óptimo de los síntomas.
+3. Realice actividad física diaria: fomente la participación en actividades físicas estructuradas, como pasear a Jingo una vez al día, para mejorar el estado de ánimo y los niveles de energía.
+4. Implemente un plan de seguridad: desarrolle un plan de seguridad colaborativo con John que describa los pasos y recursos claros a los que puede acceder en momentos de ideas suicidas, garantizando su seguridad y bienestar.

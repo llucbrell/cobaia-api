@@ -1,7 +1,7 @@
 import requests
 import json
 import sys
-from datetime import date
+from datetime import date, datetime
 import time
 from app.ia_tools.send_request import *
 
@@ -27,7 +27,21 @@ class ModelCommunication:
         return self.usage
 
     def get_response_time(self):
-        return self.response_time
+        return round(self.response_time, 3)
+
+
+    def format_duration_from_ns(self, nanoseconds):
+        """Convierte nanosegundos a una cadena formateada en segundos (X.XXX s)."""
+        if nanoseconds is None:
+            return "N/A" # O manejar como prefieras si el valor no existe
+        try:
+            # Convertir nanosegundos a segundos (float)
+            seconds = nanoseconds / 1_000_000_000.0
+            # Formatear a 3 decimales y añadir la unidad 's'
+            return f"{seconds:.3f}s"
+        except TypeError:
+            # En caso de que el valor no sea numérico por alguna razón
+            return "Invalid Value"
 
     def send_to_model(self, prompt):
         """
@@ -45,7 +59,8 @@ class ModelCommunication:
             "options": {
                 "temperature": 0.0
             },
-            "stream": False
+            "stream": False,
+            "raw": False
         }
         if self.payload:
             print("Sending with custom payload")
@@ -74,7 +89,7 @@ class ModelCommunication:
         }
         try:
             response_json = response.json()
-            print("Response JSON:", json.dumps(response_json, indent=2))  # Imprime el JSON formateado
+            print("Response JSON:", json.dumps(response_json))  # Imprime el JSON formateado
             if response_json.get("error") != None:
                 model_response["status"] = "error"
                 model_response["message"] = response_json["error"]
@@ -84,18 +99,29 @@ class ModelCommunication:
             print("Response text:", response.text)
 
         # Extraer el contenido del primer choice en el JSON de la respuesta
-        if "choices" in response_json:
-            model_response["message"] = response_json["choices"][0]["message"]["content"]
-        
+        model_response["message"] = get_response_content(response_json)    
+
+        # usage para lm studio
         if "usage" in response_json:
             self.usage = response_json["usage"]
             # Obtener la fecha de hoy
             hoy = date.today()
-            self.usage["date"] = hoy
+            self.usage["date"] =  hoy
     
         if "usage" in response_json and "model" in response_json:
             self.usage["model_id_name"] = response_json["model"]
         
+        # usage para ollama
+        if "done_reason" in response_json:
+            self.usage["date"] = response_json["created_at"].split('T')[0]
+            self.usage["model_id_name"] = response_json["model"]
+            self.usage["prompt_tokens"] = response_json["prompt_eval_count"]
+            self.usage["completion_tokens"] = response_json["eval_count"]
+            self.usage["total_tokens"] = response_json["prompt_eval_count"] + response_json["eval_count"]
+            self.usage["load_duration"] = self.format_duration_from_ns(response_json["load_duration"])
+            self.usage["total_duration"] = self.format_duration_from_ns(response_json["total_duration"])
+
+
 #        for message in response.iter_lines():
 #            print(message)
 #            jsonstr = json.loads(message)

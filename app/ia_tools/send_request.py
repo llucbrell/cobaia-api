@@ -5,25 +5,30 @@ def get_response_content(response_json):
     print("Response format")
     print(response_json)
     if 'choices' in response_json:
+        print("LM Studio")
         # LM studio
         # Asumiendo que 'choices' es una lista de objetos y queremos extraer 'content' del objeto 'message'
         #choices = [choice['message']['content'] for choice in response_json['choices']]
         return response_json['choices'][0]['message']['content']
     elif 'textResponse' in response_json:
         # Anything LM
+        print("Anything LM")
         return response_json['textResponse']
     elif 'response' in response_json:  # Ejemplo de un nuevo tipo de respuesta
+        print("Ollama")
         return response_json['response']
     else:
-        return 'Unknown response format ' + response_json
+        return 'Unknown response format ' + str(response_json)
 
 
-def send_request(request_url, payload, headers):
+def send_request(request_url, payload):
     try:
-        response = requests.post(request_url, json=payload, headers=headers)
+        response = requests.post(request_url, json=payload)
         response.raise_for_status()
         response_json = response.json()
-        return get_response_content(response_json)
+        print("Response from LLM Server correct")
+        #return get_response_content(response_json)
+        return response_json
     except requests.exceptions.HTTPError as http_err:
         return f'HTTP error occurred: {http_err}\nResponse content: {response.content}'
     except Exception as err:

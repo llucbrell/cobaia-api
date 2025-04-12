@@ -1,0 +1,53 @@
+SOAP note example for dentists
+Subjective
+Chief complaint: A 56-year-old woman presents with a chief complaint of "painful upper right back jaw for the past week or so."
+
+History of present illness: The client reports experiencing pain in her upper right back jaw for approximately one week. She describes the pain as [insert patient's description of the pain, e.g., sharp, dull, throbbing, aching]. She states that the pain is [insert patient's description of pain characteristics, e.g., constant, intermittent, worse with specific activities]. She denies any history of fever, chills, facial swelling, difficulty swallowing, or earache.
+
+Past medical history: The patient denies any significant past medical history.
+
+Medications: The patient denies taking any current medications.
+
+Allergies: The patient reports an allergy to paracetamol.
+
+Social history: The patient reports a history of [insert details of tobacco use, e.g., smoking cigarettes for 30 years, one pack per day] and [insert details of alcohol consumption, e.g., occasional social drinking].
+
+Objective
+Vitals:
+
+Blood pressure: 133/91 mmHg
+Heart rate: 87 beats per minute
+Temperature: 98.7 °F (37.1 °C)
+Clinical Examination:
+
+Extraoral:
+
+No signs of swelling, asymmetry, pain, redness (erythema), numbness (paraesthesia), or tenderness to palpation (TMI) were observed in the external facial and jaw areas.
+Intraoral:
+
+Tooth #17 (FDI #27) is supra-erupted and contacting (occluding) the pericoronal tissues (gum tissue surrounding the crown) of tooth #16.
+Tooth #16 is partially erupted and exhibits:
+Red, inflamed gum tissue (erythematous gingiva)
+Presence of discharge (exudate)
+Pain upon palpation
+Radiology:
+
+Pending - X-rays (including periapical (PA) and panoramic (Pano) views, or possibly a CT scan) are recommended to further evaluate the underlying anatomy and identify any potential bone involvement.
+Assessment
+Pericoronitis: The patient exhibits clinical signs consistent with pericoronitis affecting tooth #16. This includes the presence of:
+Partial eruption of the tooth
+Inflamed gum tissue (erythema)
+Discharge (exudate) around the tooth
+Pain upon palpation
+Supra-eruption of the opposing tooth (#17) and its contact with the affected tissue
+Contributing factors: While a definitive cause cannot be established without further investigation, the patient's smoking history (one pack per week) could potentially contribute to the development of pericoronitis by compromising the immune response and increasing the risk of infection.
+Additional considerations: Further information is necessary to fully understand the underlying factors. Pending X-rays (PA and panoramic) will provide valuable insights into the bone structure and identify any potential complications, such as impaction or bone loss.
+Therefore, a definitive diagnosis and comprehensive treatment plan will be determined following the completion of the X-ray studies and considering the patient's full medical history and any additional information gathered.
+
+Plan
+Pain management: OTC pain meds (consider allergy) & warm compresses (10-15 min, several times/day).
+Definitive treatment: Schedule extraction of #17 after X-ray review.
+Antibiotics (pending): Consider a 5-7 day course of amoxicillin based on X-ray and severity.
+Follow-up: See patient in 3-5 days (healing, post-op concerns, oral hygiene).
+Oral hygiene education: Instruct on proper brushing/flossing and gentle cleaning of affected area.
+Smoking cessation: Encourage quitting to improve healing and reduce infection risk.

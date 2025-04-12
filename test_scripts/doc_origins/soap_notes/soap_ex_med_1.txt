@@ -1,0 +1,40 @@
+Ejemplo de nota SOAP para profesionales médicos
+Subjetivo
+Darleene, de 66 años, se presenta para una cita de seguimiento por su hipertensión. Dice que se siente bien y niega tener mareos, dolores de cabeza o fatiga.
+
+Historial médico: Darleene no tiene antecedentes médicos importantes más allá de la hipertensión. Su régimen de medicación actual consiste únicamente en 25 mg de HCTZ al día.
+
+Estilo de vida: Durante los últimos tres meses, Darleene ha perdido 53 libras con éxito al implementar una dieta baja en grasas e incorporar caminatas diarias de 10 minutos. Cabe destacar que también reconoce haber consumido dos copas de vino por noche. Darleene niega el uso de medicamentos de venta libre, como remedios para el resfriado o suplementos a base de hierbas.
+
+Objetivo
+
+Signos vitales:
+* Presión arterial: 153/80 mmHg
+* Pulso: 76 latidos por minuto
+* Peso: 155 libras
+* Altura: 55 pulgadas
+* IMC: ~30
+* Apariencia general: Bien nutrido, sin problemas agudos.
+* HEENT: Normocefálico, atraumático, atraumático (cabeza, ojos, orejas, nariz, garganta, todo normal).
+* Cuello: Flexible, sin distensión venosa yugular (JVD).
+* Pulmones: Está listo para auscultar bilateralmente.
+* Corazón: Ritmo y ritmo regulares, sin murmullos.
+* Abdomen: Suave, no tierna, sin organomegalia.
+* Extremidades: Sin edema.
+
+Evaluación
+Darleene está aquí para hacer un seguimiento de su hipertensión. No está bien controlada ya que la presión arterial está por encima de la meta de 135/85. Un posible desencadenante de su mal control de la HTA puede ser el consumo de alcohol o la presencia de obesidad.
+
+Planear
+
+1. Modificaciones del estilo de vida:
+
+* Continúe con una dieta baja en grasas y haga ejercicio: Aliente a Darleene a mantener su dieta saludable actual.
+* Aumente la actividad física: se recomienda aumentar gradualmente la duración de la caminata a 20-30 minutos diarios para apoyar aún más la pérdida de peso y la salud en general.
+* Consumo moderado de alcohol: analice el posible impacto negativo del consumo excesivo de alcohol en el control de la presión arterial. Darleene se compromete a limitar su consumo de vino a las noches de fin de semana únicamente como prueba para evaluar su efecto en su presión arterial.
+
+2. Monitorización y seguimiento:
+
+* Control de la presión arterial (PA) en el hogar: dígale a Darleene que controle su presión arterial con regularidad en casa y lleve un diario para documentar las lecturas.
+* Control del nivel de potasio: programe un análisis de sangre para evaluar su nivel de potasio debido al posible desequilibrio electrolítico asociado con el uso de diuréticos.
+* Cita de seguimiento: programe una visita de seguimiento a la clínica en un mes. En esta visita, Darleene debe llevar su diario de presión arterial para revisarlo. Según su progreso, las lecturas de la presión arterial y la evaluación general, se podría considerar la posibilidad de añadir un medicamento inhibidor de la enzima convertidora de la angiotensina si la presión arterial permanece descontrolada.

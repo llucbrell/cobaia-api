@@ -7,6 +7,7 @@ from app.ia_tools.markdown_reporter import MarkdownReporter
 from app.ia_tools.dynamic_memory import DynamicMemoryEngine
 from app.ia_tools.prompt_builder import SimplePrompt, DynamicPrompt
 import json
+from jsonschema import validate, ValidationError
 from jsonfinder import jsonfinder
 
 
@@ -30,6 +31,7 @@ class EngineBuilder:
             }
 
 
+        is_valid = None
         chatsvc = ModelCommunication(endpoint=endpoint, error_log_path=self.error_log_path)
         json_schema = json.loads(endpoint.schema)
         # Si activamos la memoria ejecutamos
@@ -63,57 +65,52 @@ class EngineBuilder:
         configs["validation"] = False
         if req_data.get("validation"):
             configs["validation"] = True
-            try:
-                json_data_for_validation = model_response
-            except json.JSONDecodeError as e:
-                msg = f"Error parsing JSON, the model commit mistakes generating json file, try it again: {e}"
-                print(msg)
-                json_data = None 
-                return jsonify(kf_error=msg)
+            json_data_for_validation = model_response
+            
+            # Comprobar si el status es "ok"
+            if json_data_for_validation.get("status") == "ok" or json_data_for_validation.get("status") == "success" :
+                # Intentar extraer el JSON desde el mensaje
+                _, _, extracted_json_for_validation = next(jsonfinder(json_data_for_validation.get("message"), json_only=True), (None, None, None))
 
+                if extracted_json_for_validation:
+                    print("Extracted JSON:")
+                    print(extracted_json_for_validation)
 
-            # Verificar si 'endpoint.schema' existe y no está vacío
-            if endpoint.schema and isinstance(endpoint.schema, (str, dict)) and endpoint.schema != "":
-                # Ahora comprobamos si el JSON no está vacío
-                schema_data = json.loads(endpoint.schema) if isinstance(endpoint.schema, str) else endpoint.schema
-                if schema_data:
-                    print("JSON object it's not empty")
-                    schema = endpoint.schema
-                    # Inicializar el validador con un archivo de log personalizado
-                    print(json_data_for_validation)
+                    # Verificar si 'endpoint.schema' existe y no está vacío
+                    if endpoint.schema and isinstance(endpoint.schema, (str, dict)) and endpoint.schema != "":
+                        schema_data = json.loads(endpoint.schema) if isinstance(endpoint.schema, str) else endpoint.schema
 
-                    validator = JSONValidator(error_log_path=self.error_log_path)
-                    if json_data_for_validation.status == "ok":
-                        extracted_json_for_validation = jsonfinder(json_data_for_validation.message)
-                        print("EXTRACTED")
-                        print(extracted_json_for_validation.message)
-                        is_valid = validator.validate_json(extracted_json_for_validation, json_schema)
+                        if schema_data:
+                            # Validar el JSON contra el esquema
+                            try:
+                                validate(instance=extracted_json_for_validation, schema=schema_data)
+                                print("El JSON es válido.")
+                                is_valid = True
+                            except ValidationError as e:
+                                print("El JSON es inválido. Revisa los logs para más detalles:", e)
+                                is_valid = False
+                                #return jsonify(kf_error=str(e))
+                        else:
+                            msg = "JSON schema object can't be an empty object"
+                            print(msg)
+                            return jsonify(kf_error=msg)
                     else:
-                        # Validar el JSON contra el esquema
-                        is_valid = validator.validate_json(json_data_for_validation, json_schema)
-                    print("JSONDATA")
-                    print(json_data_for_validation)
-                    print("JSONSCHEMA")
-                    print(json_schema)
-                    if is_valid:
-                        print("El JSON es válido.")
-                    else:
-                        print("El JSON es inválido. Revisa los logs para más detalles.")
+                        msg = "JSON schema is empty"
+                        print(msg)
+                        return jsonify(kf_error=msg)
                 else:
-                    msg = "JSON object can't be an empty object"
+                    msg = "No valid JSON could be extracted from the message"
                     print(msg)
                     return jsonify(kf_error=msg)
             else:
-                msg = "JSON schema it's empty"
+                msg = "Model response status is not 'ok' or JSON data is missing"
                 print(msg)
                 return jsonify(kf_error=msg)
- 
-
-            
-
-
         else:
-            is_valid = None
+            print("Validation is not enabled.") 
+                    
+
+
 
 
 
@@ -143,7 +140,14 @@ class EngineBuilder:
         for json_obj in json_objects:
             # Generación del informe markdown
             report = MarkdownReporter( text=text, endpoint=endpoint)
-            if req_data.get("reportMarkdown") == True:
+            rep_config =req_data.get("reportMarkdown")
+            print(rep_config)
+            print(rep_config)
+            print(rep_config)
+            print(rep_config)
+            print(rep_config)
+            print(rep_config)
+            if rep_config == True:
                 print("EN REPORT GENERATION")
                 print("EN REPORT GENERATION")
                 print("EN REPORT GENERATION")
@@ -152,18 +156,19 @@ class EngineBuilder:
                 configs["report"] = True
                 report.add_to_report(text=text, model_response=model_response, json_data=json_obj, is_valid=is_valid)
 
-            report.mark_text_keys(text=text, json_array=json_objects)
+                report.mark_text_keys(text=text, json_array=json_objects)
             if usage:
                 report.add_model_usage(usage=usage)
-            print("CONFIGS")
-            print(configs)
-            report.add_kf_validation(validation=is_valid)
-            report.add_kf_config(configs=configs)
-            report.add_original_text(text=text)
-            report_text = report.get_report()
-            report_response = {
-                "md": report_text
-            }
+            if rep_config == True and usage:
+                print("CONFIGS")
+                print(configs)
+                report.add_kf_validation(validation=is_valid)
+                report.add_kf_config(configs=configs)
+                report.add_original_text(text=text)
+                report_text = report.get_report()
+                report_response = {
+                    "md": report_text
+                }
 
 
         for obj in extracted_json:

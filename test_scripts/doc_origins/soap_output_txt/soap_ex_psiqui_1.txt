@@ -1,0 +1,16 @@
+Ejemplo de nota SOAP para psiquiatras
+Subjetivo
+La Sra. M. describe su estado actual como «bien», con una ligera mejoría en sus síntomas depresivos. Si bien todavía experimenta una tristeza persistente, reconoce que ha progresado un poco. Sus patrones de sueño siguen siendo interrumpidos, aunque informa que ha mejorado la calidad del sueño y logra dormir «4 horas por noche».
+
+Durante la sesión, la Sra. M. expresó su malestar por mi toma de notas, lo que le causó ansiedad. Además, mencionó la falta de aire ocasional y la ansiedad general relacionada con los proveedores de atención médica. Curiosamente, expresó su preocupación por la ubicación de sus registros médicos.
+
+Objetivo
+La Sra. M. está alerta. Su estado de ánimo es inestable pero ha mejorado un poco, y está mejorando su capacidad para regular sus emociones.
+
+Evaluación
+La Sra. M. tiene un trastorno depresivo grave.
+
+Planear
+La Sra. M. seguirá tomando 20 miligramos de sertralina al día. Si sus síntomas no mejoran en dos semanas, el médico considerará la posibilidad de ajustar la dosis hasta 40 mg. La Sra. M. continuará con el asesoramiento ambulatorio, la educación y la distribución de limosnas a los pacientes. El administrador de casos de la Sra. M realizará una evaluación y un plan integrales.
+
+La nota SOAP podría incluir datos como los signos vitales de la Sra. M, la historia clínica del paciente, el HPI y los análisis de laboratorio en la sección Objetivos para monitorear los efectos de su medicamento.

@@ -1,0 +1,55 @@
+Ejemplo de nota SOAP para dentistas
+Subjetivo
+Queja principal: una mujer de 56 años presenta una queja principal de «dolor en la mandíbula superior derecha durante aproximadamente la última semana».
+
+Antecedentes de la enfermedad actual: La paciente informa haber sentido dolor en la mandíbula superior derecha durante aproximadamente una semana. Describe el dolor de la siguiente manera: [insértese la descripción del dolor hecha por el paciente, por ejemplo, agudo, sordo, punzante, punzante]. Afirma que el dolor es [insértese la descripción del paciente sobre las características del dolor, por ejemplo, constante, intermitente o empeora con actividades específicas]. Niega tener antecedentes de fiebre, escalofríos, hinchazón facial, dificultad para tragar o dolor de oído.
+
+Historial médico anterior: el paciente niega cualquier historial médico anterior significativo.
+
+Medicamentos: El paciente niega haber tomado ningún medicamento actual.
+
+Alergias: El paciente informa de una alergia al paracetamol.
+
+Antecedentes sociales: el paciente informa de un historial de [insértese detalles del consumo de tabaco, por ejemplo, haber fumado cigarrillos durante 30 años, un paquete por día] y [inserte detalles del consumo de alcohol, por ejemplo, consumo ocasional de alcohol con fines sociales].
+
+Objetivo
+Signos vitales:
+
+* Presión arterial: 133/91 mmHg
+* Frecuencia cardíaca: 87 latidos por minuto
+* Temperatura: 98,7 °F (37,1 °C)
+
+Examen clínico:
+
+Extraoral:
+
+* No se observaron signos de hinchazón, asimetría, dolor, enrojecimiento (eritema), entumecimiento (parestesia) o sensibilidad a la palpación (IMC) en las áreas externas de la cara y la mandíbula.
+
+Intraoral:
+
+* El diente #17 (FDI #27) está supraerupcionado y entra en contacto (ocluye) con los tejidos pericoronales (tejido de las encías que rodea la corona) del diente #16.
+* El diente #16 está parcialmente erupcionado y presenta:
+* Encías rojas e inflamadas (encía eritematosa)
+* Presencia de secreción (exudado)
+* Dolor a la palpación
+
+Radiología:
+
+* Pendiente: se recomiendan radiografías (incluidas las vistas periapicales (PA) y panorámicas (Pano), o posiblemente una tomografía computarizada) para evaluar más a fondo la anatomía subyacente e identificar cualquier posible afectación ósea.
+
+Evaluación
+
+* Pericoronitis: El paciente presenta signos clínicos consistentes con la pericoronitis que afecta al diente #16. Esto incluye la presencia de: Erupción parcial del diente Inflamación del tejido de las encías (eritema) Secreción (exudado) alrededor del diente Dolor a la palpación * Supraerupción del diente opuesto (#17) y su contacto con el tejido afectado
+* Factores que contribuyen: si bien no se puede establecer una causa definitiva sin una investigación adicional, el historial de tabaquismo del paciente (un paquete por semana) podría contribuir al desarrollo de la pericoronitis al comprometer la respuesta inmunitaria y aumentar el riesgo de infección.
+* Consideraciones adicionales: se necesita más información para comprender completamente los factores subyacentes. Las radiografías pendientes (PA y panorámicas) proporcionarán información valiosa sobre la estructura ósea e identificarán cualquier posible complicación, como el impacto o la pérdida ósea.
+
+Por lo tanto, se determinará un diagnóstico definitivo y un plan de tratamiento integral después de completar los estudios de rayos X y teniendo en cuenta el historial médico completo del paciente y cualquier información adicional recopilada.
+
+Planear
+
+* Control del dolor: analgésicos de venta libre (considere la alergia) y compresas tibias (de 10 a 15 minutos, varias veces al día).
+* Tratamiento definitivo: programe la extracción del #17 después de una revisión radiográfica.
+* Antibióticos (pendientes): considere un tratamiento de 5 a 7 días con amoxicilina según la radiografía y la gravedad.
+* Seguimiento: Consulte al paciente en un plazo de 3 a 5 días (curación, problemas posoperatorios, higiene bucal).
+* Educación sobre higiene bucal: instruya sobre el cepillado y el uso del hilo dental adecuados y sobre la limpieza suave de la zona afectada.
+* Dejar de fumar: aliente a dejar de fumar para mejorar la cicatrización y reducir el riesgo de infección.s
