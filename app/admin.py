@@ -57,7 +57,7 @@ class RoleModelView(SecureModelView):
     # Formateador personalizado para mostrar los nombres de los usuarios asociados al rol
     column_formatters = {
         'tokens': lambda view, context, model, name: ', '.join([token.token for token in model.tokens]),
-        'endpoints': lambda view, context, model, name: ', '.join([endpoint.model_name for endpoint in model.endpoints])
+        'endpoints': lambda view, context, model, name: ', '.join([f" {endpoint.id} : {endpoint.model_name}"for endpoint in model.endpoints])
     }
 
     # Personalizar el formulario para seleccionar usuarios, tokens y endpoints relacionados
@@ -72,7 +72,7 @@ class RoleModelView(SecureModelView):
         },
         'endpoints': {
             'query_factory': lambda: Endpoint.query.all(),
-            'get_label': 'model_name'  # Mostrar los nombres de los endpoints en lugar de los objetos
+            'get_label':  lambda endpoint: f"{endpoint.id}: {endpoint.model_name}"  # Mostrar ID y nombre del endpoint
         }
     }
 
